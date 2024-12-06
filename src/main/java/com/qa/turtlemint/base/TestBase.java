@@ -38,15 +38,14 @@ public class TestBase {
         String browserName = prop.getProperty("browser");
         LogUtils.info("Browser name: " + browserName);
         if (browserName.equals("chrome")) {
-            //driver = WebDriverManager.chromedriver().create();
             ChromeOptions options = new ChromeOptions();
-           // options.setBrowserVersion("121");
+          //  driver = new ChromeDriver(options);
+         //  options.setBrowserVersion("124");
             options.addArguments("start-maximized"); // open Browser in maximized mode
             options.addArguments("--incognito");
             String osName = System.getProperty("os.name");
             LogUtils.info("osName: " + osName);
             if (osName.toLowerCase().contains("linux")) {
-//					WebDriverManager.chromedriver().setup();
                 options.addArguments("--headless");
                 options.addArguments("--incognito");
                 options.addArguments(("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
