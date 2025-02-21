@@ -8,22 +8,21 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 import java.util.List;
 
-import static com.qa.turtlemint.util.TestUtil.waitUntilTextToPresent;
-
 public class Tw_Results_page extends TestBase {
 
+    public Tw_Results_page() {
+        PageFactory.initElements(driver, this);
+    }
 
-
-    @FindBy(xpath = "//a[@data-auto= 'ICICILOMBARD-web']")
+    @FindBy(xpath = "//a[text()='Buy']")
     WebElement SelectICICIPlan;
     @FindBy(xpath = "//button[text()='Confirm']")
     WebElement Confirm;
-    @FindBy(xpath = "//input[@placeholder='Enter Your Name']")
-    WebElement NamePan;
     @FindBy(xpath = "//input[@id='kyc-form_dob']")
     WebElement kycdob;
     @FindBy(xpath = "//td[@title='1997-12-24']")
@@ -36,7 +35,6 @@ public class Tw_Results_page extends TestBase {
     WebElement continuebtn;
     @FindBy(xpath = "//span[text()='Confirm']")
     WebElement verifybtn;
-
     @FindBy(xpath = "//span[@class='set-title'][text()='PA Owner Driver']")
     WebElement PA_Addon;
     @FindBy(xpath = "//span[@class='set-title'][text()=' Zero Depreciation ']")
@@ -49,15 +47,15 @@ public class Tw_Results_page extends TestBase {
     WebElement Paid;
     @FindBy(xpath = "//span[@class='set-title'][text()='Employee Legal Liability']")
     WebElement Emp;
-    @FindBy(xpath = "(//span[@class='ant-radio'])[2]")
+    @FindBy(xpath = "//h4[text()='Upload Document']")
     WebElement radioBT2;
     @FindBy(xpath = "//mat-form-field[@appearance=\"outline\"]")
     WebElement Selectdropdown;
-    @FindBy(xpath = "(//button[@type='button'])[1]")
+    @FindBy(xpath = "//span[text()='Yes']")
     WebElement yesBT;
-    @FindBy(xpath = "(//button[@type='button'])[2]")
+    @FindBy(xpath = "//span[text()='Submit']//parent::button")
     WebElement SubmittedBT;
-    @FindBy(xpath = "(//button[@type='submit'])[1]")
+    @FindBy(xpath = "//span[text()='Continue']//parent::button")
     WebElement ContinueBt2;
     @FindBy(xpath = "//span[@class='mat-option-text']")
     List<WebElement> FecthDropdown;
@@ -89,11 +87,10 @@ public class Tw_Results_page extends TestBase {
     WebElement Updates;
     @FindBy(xpath = "//p[text()='PAN Number not available?']")
     WebElement PanNotAvailable;
-
-
-
-
-
+    @FindBy(xpath = "//input[@id='customerName']")
+    WebElement name;
+    @FindBy(id = "container-next-btn")
+    WebElement NextButton;
 
 
 
@@ -126,24 +123,19 @@ public class Tw_Results_page extends TestBase {
     }
 
     public void iciciProceedtoBuy() throws InterruptedException {
+        WebCommands.staticSleep(3000);
+        TestUtil.waitElementToBeClickable(SelectICICIPlan);
         TestUtil.click(SelectICICIPlan, "ICIC Clicked on Buy now");
         TestUtil.click(Confirm, "Clicked on confirm");
         WebCommands.staticSleep(3000);
     }
-    public void View_Details(){
-        TestUtil.click(ViewDetails,"Clikced view details..");
-        TestUtil.click(BuyNow,"Clicked buy now cta");
-        TestUtil.click(Confirm, "Clicked on confirm");
-
-    }
-
     public void panNotAvailable () {
         WebCommands.staticSleep(4000);
         TestUtil.click(PanNotAvailable, "Clicked on Pan Card Not available");
     }
 
     public void cKyc() {
-        WebCommands.staticSleep(12000);
+        WebCommands.staticSleep(4000);
         TestUtil.sendKeys(kycdob, "24/12/1997", "DOB Entered");
         WebCommands.staticSleep(3000);
         TestUtil.click(selectDateNew, "DOB Selected");
@@ -155,7 +147,6 @@ public class Tw_Results_page extends TestBase {
         TestUtil.getScreenShot();
         TestUtil.click(continuebtn, "Clicked on continue");
         WebCommands.staticSleep(10000);
-        WebCommands.staticSleep(15000);
         try {
             if(verifybtn.isEnabled()) {
                 WebCommands.staticSleep(2800);
@@ -166,12 +157,14 @@ public class Tw_Results_page extends TestBase {
         } catch (NoSuchElementException e) {
             LogUtils.info("C-kyc has failed and hence going through Ovd flow");
             TestUtil.getScreenShot();
+            OVD_TW();
         }
 
     }
 
 
     public void OVD_TW() {
+
         TestUtil.click(radioBT2, "Clicked on radio button");
         TestUtil.click(ContinueBt2, "Clicked on Continue Button");
         WebCommands.staticSleep(1000);
@@ -193,12 +186,13 @@ public class Tw_Results_page extends TestBase {
             LogUtils.info("Aadhar is By Default selected");
         }
         TestUtil.OvdUploadFile("/home/ubuntu/storage/AadharFrontMotor.png");
-        //  TestUtil.OvdUploadFile("/Users/hemantpatil/Desktop/Aadharfront.jpg");
+        //  TestUtil.OvdUploadFile("/Users/vijay/Desktop/AadharFrontSide.png");
         LogUtils.info("Aadhaar Front Page Uploaded");
         TestUtil.OvdUploadFile("/home/ubuntu/storage/AadharBackMotor.png");
-        //  TestUtil.OvdUploadFile("/Users/hemantpatil/Desktop/Aadharback.jpg");
+        //  TestUtil.OvdUploadFile("/Users/vijay/Desktop/AadharBackSide.png");
         LogUtils.info("Aadhaar Back page uploaded");
         TestUtil.getScreenShot();
+        WebCommands.staticSleep(8000);
         TestUtil.click(SubmittedBT,"clicked submitted");
         WebCommands.staticSleep(5000);
         try {
@@ -211,7 +205,67 @@ public class Tw_Results_page extends TestBase {
         }catch (Exception e){
             LogUtils.info("Image upload not required");
         }
-        WebCommands.staticSleep(4000);
+        WebCommands.staticSleep(10000);
         TestUtil.click(confirmBt,"Confirm");
     }
+    public void OVD_TW_case() {
+
+
+        WebCommands.staticSleep(4000);
+        TestUtil.sendKeys(kycdob, "24/12/1997", "DOB Entered");
+        WebCommands.staticSleep(3000);
+        TestUtil.click(selectDateNew, "DOB Selected");
+        WebCommands.staticSleep(3000);
+        TestUtil.sendKeys(pancardDetails, "BKGPC6545D", "Pancard detail entered");
+        WebCommands.staticSleep(3000);
+        TestUtil.click(individual, "Clicked on Individual");
+        WebCommands.staticSleep(5000);
+        TestUtil.getScreenShot();
+        TestUtil.click(continuebtn, "Clicked on continue");
+
+
+        TestUtil.click(radioBT2, "Clicked on radio button");
+        TestUtil.click(ContinueBt2, "Clicked on Continue Button");
+        WebCommands.staticSleep(1000);
+        TestUtil.click(Selectdropdown, "Click on select dropdown");
+        WebCommands.staticSleep(3000);
+        for(WebElement dropdownresult:FecthDropdown)
+        {
+            if(dropdownresult.getText().equals("Aadhaar"))
+            {
+                System.out.println("We are inside loop:"+dropdownresult);
+                dropdownresult.click();
+                break;
+            }
+        }
+        WebCommands.staticSleep(2000);
+        try{
+            TestUtil.click(yesBT, "clicked yes Bt");
+        }catch (Exception e){
+            LogUtils.info("Aadhar is By Default selected");
+        }
+        TestUtil.OvdUploadFile("/home/ubuntu/storage/AadharFrontMotor.png");
+        //TestUtil.OvdUploadFile("/Users/vijay/Desktop/AadharFrontSide.png");
+        LogUtils.info("Aadhaar Front Page Uploaded");
+        TestUtil.OvdUploadFile("/home/ubuntu/storage/AadharBackMotor.png");
+        //TestUtil.OvdUploadFile("/Users/vijay/Desktop/AadharBackSide.png");
+        LogUtils.info("Aadhaar Back page uploaded");
+        TestUtil.getScreenShot();
+        WebCommands.staticSleep(8000);
+        TestUtil.click(SubmittedBT,"clicked submitted");
+        WebCommands.staticSleep(5000);
+        try {
+            WebCommands.staticSleep(8000);
+            TestUtil.OvdUploadFile("/home/ubuntu/storage/images.jpg");
+            //  TestUtil.OvdUploadFile("/Users/hemantpatil/Desktop/Aadharback.jpg");
+            LogUtils.info("Image uploaded");
+            WebCommands.staticSleep(5100);
+            TestUtil.click(Proceedtoverify,"Proceed to verify");
+        }catch (Exception e){
+            LogUtils.info("Image upload not required");
+        }
+        WebCommands.staticSleep(10000);
+        TestUtil.click(confirmBt,"Confirm");
+    }
+
 }

@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Tw_lead extends TestBase {
-    public Tw_lead() {
+public class Tw_Savelead extends TestBase {
+    public Tw_Savelead() {
         PageFactory.initElements(driver, this);
     }
 

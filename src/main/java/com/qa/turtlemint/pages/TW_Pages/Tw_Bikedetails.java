@@ -19,20 +19,20 @@ public class Tw_Bikedetails extends TestBase {
     @FindBy(xpath = "//input[@type='search']")
     WebElement BikeModel;
 
-    @FindBy(xpath = "//span[text()='Honda Activa']")
+    @FindBy(xpath = "//span[text()='Kabira Mobility Intercity']")
     WebElement SelectTWModel;
 
-    @FindBy(xpath = "//span[text()='2023']|//span[text()='2021']|//span[text()='2018']")
+    @FindBy(xpath = "//span[text()='2024']|//span[text()='2021']|//span[text()='2018']")
     WebElement RegYear;
 
-    @FindBy(xpath = "//span[text()='Petrol']")
+    @FindBy(xpath = "//span[text()='Electric']")
     WebElement Tw_FuelType;
 
     @FindBy(id = "variant-uiSelect")
     WebElement ClickVariant;
 
-    @FindBy(xpath = "//span[text()='3G (110 CC)']")
-    WebElement Activa3G;
+    @FindBy(xpath = "//span[text()='300 (1 CC)']")
+    WebElement cc300;
 
     @FindBy(id = "container-next-btn")
     WebElement NextButton;
@@ -51,17 +51,11 @@ public class Tw_Bikedetails extends TestBase {
         BikeLbl.isDisplayed();
         TestUtil.waitUntilVisibilityOfElement(BikeModel);
         TestUtil.sendKeys(BikeModel, BikeName, "Bike Model Entered");
-        TestUtil.waitElementToBeClickable(SelectTWModel);
-        TestUtil.click(SelectTWModel, "Selected Honda Activa");
-        TestUtil.waitElementToBeClickable(RegYear);
+        TestUtil.click(SelectTWModel, "Selected kabira");
         TestUtil.click(RegYear, "Registration Year Selected");
-        TestUtil.waitElementToBeClickable(Tw_FuelType);
         TestUtil.click(Tw_FuelType, "Fuel Type Selected");
-        TestUtil.waitElementToBeClickable(ClickVariant);
         TestUtil.click(ClickVariant, "Trying to Select variant...");
-        TestUtil.waitElementToBeClickable(Activa3G);
-        TestUtil.click(Activa3G, "3G variant Selected...");
-        TestUtil.waitElementToBeClickable(NextButton);
+        TestUtil.click(cc300, "CC 300 variant Selected...");
         TestUtil.click(NextButton, "Clicked on Next Button");
 
     }

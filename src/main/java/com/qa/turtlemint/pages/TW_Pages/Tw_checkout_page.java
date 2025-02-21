@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -81,6 +82,12 @@ public class Tw_checkout_page extends TestBase {
     WebElement copylink;
     @FindBy(xpath = "//button[@class=\"close ng-click-active\"]")
     WebElement closecrossbutton;
+    @FindBy(xpath = "//input[@id=\"copytxtInput\"]")
+    WebElement Input;
+    @FindBy(xpath = "//p[@ng-repeat=\"declaration in customerDeclaration\"]")
+    WebElement Checkmark;
+    @FindBy(xpath = "//button[text()=' Approve and make payment ']")
+    WebElement Approve;
 
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -90,6 +97,7 @@ public class Tw_checkout_page extends TestBase {
     }
 
     public void contactDetailsKycDigit(String fname, String lname) throws Exception { //For Kyc Digit
+        WebCommands.staticSleep(5000);
         TestUtil.click(ClickOntitle, "Clicked on title");
         TestUtil.click(SelectTitle, "Title selected");
         String FstName = firstname.getAttribute("value");
@@ -119,8 +127,9 @@ public class Tw_checkout_page extends TestBase {
     public void share_payment_link() {
         WebCommands.staticSleep(3000);
         TestUtil.waitUntilVisibilityOfElement(copylink);
-        String copiedText = copylink.getAttribute("data-test-value");
+
         TestUtil.click(copylink, "Copy link clicked");
+        String copiedText = Input.getAttribute("value");
         LogUtils.info("Copyed link");
         WebCommands.staticSleep(2000);
         TestUtil.click(closecrossbutton, "close share window button");
@@ -134,6 +143,15 @@ public class Tw_checkout_page extends TestBase {
         WebCommands.staticSleep(1500);
         driver.get(copiedText);
         WebCommands.staticSleep(2000);
+
+    }
+    public void reviewpage() throws IOException {
+        WebCommands.staticSleep(2000);
+        TestUtil.click(Checkmark,"clicked check mark");
+        WebCommands.staticSleep(2000);
+        TestUtil.click(Approve,"clicked approved");
+        TestUtil.getFullPageScreenShot();
+
     }
 
     public void Digit_Pin() throws Exception {
@@ -206,7 +224,6 @@ public class Tw_checkout_page extends TestBase {
         public void Icici_NewBusiness_Tp (String fname , String lname  ) throws Exception
         {
             contactDetailsKycDigit(fname, lname);
-            Mobile_details();
             ContinueButton();
             personalDetailsDBO();  // Explicit wait added.....
             newVehicleDetail();    // Explicit wait added.....
@@ -214,12 +231,12 @@ public class Tw_checkout_page extends TestBase {
             paymentSlide();
             sharepayment();
             share_payment_link();
+            reviewpage();
 
         }
     public void Icici_NewBusiness_Tp_Make (String fname , String lname  ) throws Exception
     {
         contactDetailsKycDigit(fname, lname);
-        Mobile_details();
         ContinueButton();
         personalDetailsDBO();  // Explicit wait added.....
         newVehicleDetail();    // Explicit wait added.....

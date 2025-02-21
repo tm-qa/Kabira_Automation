@@ -4,11 +4,9 @@ import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.commands.WebCommands;
 import com.qa.turtlemint.util.TestUtil;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.qa.turtlemint.util.TestUtil.waitUntilTextToPresent;
 
 public class Tw_Bike_Registration extends TestBase {
 
@@ -34,10 +32,9 @@ public class Tw_Bike_Registration extends TestBase {
     public void SelectRegistrationLocation(String no) {
         Search.sendKeys(no);
         WebCommands.staticSleep(3000);
-//        SelectRegLocation.click();
-//        act.moveToElement(CheckBox).click().perform();
         NextButton.click();
     }
+
     public void CreateQuoteWithoutRegNumber()
     {
         TestUtil.click(WithoutRegNumberLink,"Clicked on Quote without RegNo....");
