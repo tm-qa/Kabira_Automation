@@ -1,4 +1,4 @@
-package Login;
+package Kbira_test;
 
 import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.pages.Sell.GrowPageSellButton;
@@ -10,7 +10,7 @@ import util.RetryAnalyser;
 import util.iTestListener;
 
 @Listeners(iTestListener.class)
-@Test(groups = {"Kabira_testcases"})
+@Test(groups = {"Full_suite"})
 public class Kabira_testcases extends TestBase {
     public Kabira_testcases() {
         super();
@@ -46,7 +46,7 @@ public class Kabira_testcases extends TestBase {
 
     }
 
-    @Test(enabled = true,retryAnalyzer = RetryAnalyser.class)
+    @Test(retryAnalyzer = RetryAnalyser.class)
     public void TW_NEW_BUSINESS_SharePayment_ICICI() throws Exception
     {
         reg.CreateQuoteWithoutRegNumber();
