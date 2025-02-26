@@ -81,7 +81,6 @@ public class Kabira_testcases extends TestBase {
         lead.SaveLead(tl.NameGenerator());
         tl.NameGenerator();
         Rel.iciciProceedtoBuy();
-        Rel.panNotAvailable();
         Rel.OVD_TW_case();
         tl.NameGenerator();
         checkout.Icici_NewBusiness_Tp(tl.firstname, tl.lastname);
@@ -157,7 +156,7 @@ public class Kabira_testcases extends TestBase {
 
     @AfterMethod
     public void Close() {
-        driver.quit();
+       // driver.quit();
     }
 }
 

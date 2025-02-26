@@ -4,9 +4,11 @@ import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.commands.WebCommands;
 import com.qa.turtlemint.util.LogUtils;
 import com.qa.turtlemint.util.TestUtil;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -100,25 +102,28 @@ public class Tw_Results_page extends TestBase {
         TestUtil.getFullPageScreenShot();
         TestUtil.sendKeys(Mobileno,"9676843227","entering Mobile number");
         TestUtil.click(SendPH,"clikced send for phone number");
+        TestUtil.click(Share,"clikced share CTA.....");
         TestUtil.sendKeys(Email,"vijaykumar.katari@turtlemint.com","entering email...");
         TestUtil.click(EmailSend, "Send CTA is clikced");
     }
 
-    public void OEM_Addons() throws IOException {
+    public void OEM_Addons() throws IOException, InterruptedException {
         TestUtil.click(Rodent,"cliked rodent addon...");
         TestUtil.click(Rim,"Clikced RIM addon");
         TestUtil.click(Battery,"clikced battery ...");
-        TestUtil.click(Updates,"Clicked updates ..");
+        WebCommands.staticSleep(3000);
+        utilUpdate();
         TestUtil.getFullPageScreenShot();
     }
 
-    public void All_Addons() throws IOException {
+    public void All_Addons() throws IOException, InterruptedException {
         TestUtil.click(PA_Addon,"Clicked PA addon...");
         TestUtil.click(Zer_Addon,"Clicked zer addon...");
         TestUtil.click(Con,"Clikced con..");
         TestUtil.click(Ret,"Clicked ret addon");
         TestUtil.click(Paid,"Clokced paid addon....");
         TestUtil.click(Emp,"clicked emp..");
+        utilUpdate();
         TestUtil.getFullPageScreenShot();
     }
 
@@ -266,6 +271,21 @@ public class Tw_Results_page extends TestBase {
         }
         WebCommands.staticSleep(10000);
         TestUtil.click(confirmBt,"Confirm");
+    }
+
+
+
+    public static void utilUpdate() throws InterruptedException {
+        WebCommands.staticSleep(5000);
+        WebElement UpdateResultsBtn = driver.findElement(By.xpath("//a[text()=' Update Results']"));
+        WebElement MoveElement = driver.findElement(By.xpath("//span[text()='Share Results']"));
+        TestUtil.waitUntilVisibilityOfElement(MoveElement);
+        Actions ac=new Actions(driver);
+        ac.moveToElement(MoveElement).build().perform();  // this will just move to target location...
+
+        WebCommands.staticSleep(1000);
+        TestUtil.click(UpdateResultsBtn,"Clicked on Update Button....");
+        WebCommands.staticSleep(3000);
     }
 
 }
