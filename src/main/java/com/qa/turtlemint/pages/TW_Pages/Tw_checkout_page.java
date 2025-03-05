@@ -124,7 +124,7 @@ public class Tw_checkout_page extends TestBase {
         WebCommands.staticSleep(2000);
         TestUtil.sendKeys(Mobile,"6999912345","entering mobile number");
     }
-    public void share_payment_link() {
+    public void share_payment_link() throws IOException {
         WebCommands.staticSleep(3000);
         TestUtil.waitUntilVisibilityOfElement(copylink);
 
@@ -143,6 +143,7 @@ public class Tw_checkout_page extends TestBase {
         WebCommands.staticSleep(1500);
         driver.get(copiedText);
         WebCommands.staticSleep(2000);
+        TestUtil.getFullPageScreenShot();
 
     }
     public void reviewpage() throws IOException {
