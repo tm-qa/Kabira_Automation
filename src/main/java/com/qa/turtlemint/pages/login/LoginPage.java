@@ -12,7 +12,7 @@ public class LoginPage extends TestBase {
     @FindBy(name = "mobileNumber")
     WebElement MobileNumber;
 
-    @FindBy(xpath = "//span[text()='Continue']")
+    @FindBy(xpath = "//span[text()='GET OTP']//parent::button")
     WebElement ContinueBtn;
 
     @FindBy(xpath = "//input[@class='OTPInput']")
