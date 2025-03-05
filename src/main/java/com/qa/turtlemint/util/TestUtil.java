@@ -74,6 +74,17 @@ public class TestUtil {
                 +digit1 + digit2 + digit3 + digit4);
         System.out.println(RegNo + "IN test UTIL");
     }
+    public static void moveToElement(WebElement element) {
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).click().build().perform();
+
+    }
+    public static void OvdUploadFile(String YourFileLocationFolder) {
+        WebCommands.staticSleep(2000);
+        driver.findElement(By.xpath("//input[@type='file']")).sendKeys( YourFileLocationFolder);
+        WebCommands.staticSleep(1000);
+    }
 
     public static void click(WebElement element, String msg) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

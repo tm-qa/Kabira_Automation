@@ -12,8 +12,8 @@ public class LoginPage extends TestBase {
     @FindBy(name = "mobileNumber")
     WebElement MobileNumber;
 
-    @FindBy(xpath = "//span[text()='Continue']")
-    WebElement ContinueBtn;
+    @FindBy(xpath = "//span[text()='GET OTP']//parent::button")
+    WebElement GetOtp;
 
     @FindBy(xpath = "//input[@class='OTPInput']")
     WebElement OTPField;
@@ -30,7 +30,7 @@ public class LoginPage extends TestBase {
         String strUrl = driver.getCurrentUrl();
         LogUtils.info("Opened Website: " + strUrl);
         TestUtil.sendKeys(MobileNumber, username, "Mobile Number Entered");
-        TestUtil.click(ContinueBtn, "Continue pressed");
+        TestUtil.click(GetOtp, "Get OTP pressed");
         TestUtil.sendKeys(OTPField, otp, "OTP Entered");
         TestUtil.click(VerifyOTPBtn, "Login Successful");
     }
