@@ -3,6 +3,7 @@ package com.qa.turtlemint.pages.TW_Pages;
 import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.commands.WebCommands;
 import com.qa.turtlemint.util.TestUtil;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -27,13 +28,12 @@ public class Tw_Bikedetails extends TestBase {
 
     @FindBy(xpath = "//span[text()='Electric']")
     WebElement Tw_FuelType;
-
+    @FindBy(xpath = "//span[text()='Petrol']")
+    WebElement Tw_Petrol;
     @FindBy(id = "variant-uiSelect")
     WebElement ClickVariant;
-
     @FindBy(xpath = "//span[text()='300 (1 CC)']")
     WebElement cc300;
-
     @FindBy(id = "container-next-btn")
     WebElement NextButton;
     @FindBy(xpath = "//p[text()='Bike registration information']")
@@ -42,20 +42,35 @@ public class Tw_Bikedetails extends TestBase {
     WebElement Search;
     @FindBy(xpath = "//span[text()='MH-01-Tardeo']")
     WebElement SelectRegLocation;
+    @FindBy(xpath = "//span[text()='Standard (1222 CC)']")
+    WebElement Motohaus_1200;
 
 
-    public void SaveBikeDetails(String BikeName) throws InterruptedException
+    public void SaveBikeDetails(String BikeName, String Fuel , String varint) throws InterruptedException
     {
 
         TestUtil.waitUntilVisibilityOfElement(BikeLbl);
         BikeLbl.isDisplayed();
         TestUtil.waitUntilVisibilityOfElement(BikeModel);
         TestUtil.sendKeys(BikeModel, BikeName, "Bike Model Entered");
-        TestUtil.click(SelectTWModel, "Selected kabira");
+        WebCommands.staticSleep(1000);
+        TestUtil.sendKeys(BikeModel, String.valueOf(Keys.ENTER), "Bike Model Entered");
         TestUtil.click(RegYear, "Registration Year Selected");
-        TestUtil.click(Tw_FuelType, "Fuel Type Selected");
+
+        if (Fuel == "Petrol"){
+            TestUtil.click(Tw_FuelType, "Fuel Type Selected");
+        } else {
+            TestUtil.click(Tw_Petrol, "Fuel Type Selected");
+
+        }
+
         TestUtil.click(ClickVariant, "Trying to Select variant...");
-        TestUtil.click(cc300, "CC 300 variant Selected...");
+
+        if (varint == "kabira"){
+            TestUtil.click(cc300, "CC 300 variant Selected...");
+        } else {
+            TestUtil.click(Motohaus_1200,"Selected motohuas make");
+        }
         TestUtil.click(NextButton, "Clicked on Next Button");
 
     }

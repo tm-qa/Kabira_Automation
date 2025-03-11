@@ -25,7 +25,8 @@ public class Kabira_testcases extends TestBase {
     Tw_checkout_page checkout;
     Tw_Homepage Tw;
     GrowPageSellButton Go;
-
+    public String Tw_model;
+    String Currenturl = driver.getCurrentUrl();
 
     @BeforeMethod()
     public void loginTest() throws InterruptedException {
@@ -46,12 +47,22 @@ public class Kabira_testcases extends TestBase {
 
     }
 
-    @Test(retryAnalyzer = RetryAnalyser.class)
+
+    @Test//(retryAnalyzer = RetryAnalyser.class)
     public void TW_NEW_BUSINESS_SharePayment_ICICI() throws Exception
     {
+
+
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
-        be.SaveBikeDetails(prop.getProperty("TW_Model"));
+
+        if (Currenturl.contains("kabira")){
+             Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_1200");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
         lead.SaveLead(tl.NameGenerator());
         Rel.iciciProceedtoBuy();
         Rel.cKyc();
@@ -64,7 +75,14 @@ public class Kabira_testcases extends TestBase {
     {
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
-        be.SaveBikeDetails(prop.getProperty("TW_Model"));
+
+        if (Currenturl.contains("kabira")){
+            Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_1200");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
         lead.SaveLead(tl.NameGenerator());
         Rel.iciciProceedtoBuy();
         Rel.OVD_TW_case();
@@ -77,7 +95,14 @@ public class Kabira_testcases extends TestBase {
     {
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
-        be.SaveBikeDetails(prop.getProperty("TW_Model"));
+
+        if (Currenturl.contains("kabira")){
+            Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_1200");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
         lead.SaveLead(tl.NameGenerator());
         tl.NameGenerator();
         Rel.iciciProceedtoBuy();
@@ -90,7 +115,14 @@ public class Kabira_testcases extends TestBase {
     {
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
-        be.SaveBikeDetails(prop.getProperty("TW_Model"));
+
+        if (Currenturl.contains("kabira")){
+            Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_1200");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
         lead.SaveLead(tl.NameGenerator());
         tl.NameGenerator();
         Rel.iciciProceedtoBuy();
@@ -103,7 +135,14 @@ public class Kabira_testcases extends TestBase {
     {
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
-        be.SaveBikeDetails(prop.getProperty("TW_Model"));
+
+        if (Currenturl.contains("kabira")){
+            Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_1200");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
         lead.SaveLead(tl.NameGenerator());
         tl.NameGenerator();
         Rel.iciciProceedtoBuy();
@@ -117,7 +156,14 @@ public class Kabira_testcases extends TestBase {
     {
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
-        be.SaveBikeDetails(prop.getProperty("TW_Model"));
+
+        if (Currenturl.contains("kabira")){
+            Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_1200");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
         lead.SaveLead(tl.NameGenerator());
         tl.NameGenerator();
         Rel.All_Addons();
@@ -131,7 +177,14 @@ public class Kabira_testcases extends TestBase {
     {
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
-        be.SaveBikeDetails(prop.getProperty("TW_Model"));
+
+        if (Currenturl.contains("kabira")){
+            Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_1200");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
         lead.SaveLead(tl.NameGenerator());
         tl.NameGenerator();
         Rel.OEM_Addons();
@@ -146,7 +199,14 @@ public class Kabira_testcases extends TestBase {
     {
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
-        be.SaveBikeDetails(prop.getProperty("TW_Model"));
+
+        if (Currenturl.contains("kabira")){
+            Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_1200");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
         lead.SaveLead(tl.NameGenerator());
         tl.NameGenerator();
         Rel.ShareDetails();
@@ -154,8 +214,35 @@ public class Kabira_testcases extends TestBase {
     }
 
 
+
+    @Test//(retryAnalyzer = RetryAnalyser.class)
+    public void TW_NEW_BUSINESS_SharePayment_ICICI_500_Model() throws Exception
+    {
+        String Currenturl = driver.getCurrentUrl();
+
+        reg.CreateQuoteWithoutRegNumber();
+        be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
+
+        if (Currenturl.contains("kabira")){
+            Tw_model = prop.getProperty("TW_Model");
+        } else {
+            Tw_model = prop.getProperty("Motohaus_Model_500");
+        }
+        System.out.println(Tw_model);
+        be.SaveBikeDetails(Tw_model,"Petrol","kabira");
+        lead.SaveLead(tl.NameGenerator());
+        Rel.iciciProceedtoBuy();
+        Rel.cKyc();
+        tl.NameGenerator();
+        checkout.Icici_NewBusiness_Tp(tl.firstname, tl.lastname);
+    }
+
+
+
+
     @AfterMethod
     public void Close() {
+
         driver.quit();
     }
 }
