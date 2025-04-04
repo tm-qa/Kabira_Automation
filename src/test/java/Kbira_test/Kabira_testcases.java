@@ -48,11 +48,9 @@ public class Kabira_testcases extends TestBase {
     }
 
 
-    @Test//(retryAnalyzer = RetryAnalyser.class)
+    @Test(retryAnalyzer = RetryAnalyser.class)
     public void TW_NEW_BUSINESS_SharePayment_ICICI() throws Exception
     {
-
-
         reg.CreateQuoteWithoutRegNumber();
         be.SelectRegistrationLocation(prop.getProperty("registrationlocation"));
 
@@ -215,7 +213,7 @@ public class Kabira_testcases extends TestBase {
 
 
 
-    @Test//(retryAnalyzer = RetryAnalyser.class)
+    @Test(retryAnalyzer = RetryAnalyser.class)
     public void TW_NEW_BUSINESS_SharePayment_ICICI_500_Model() throws Exception
     {
         String Currenturl = driver.getCurrentUrl();
